@@ -1,3 +1,4 @@
+/* Estilos Generales */
 body {
     font-family: 'Poppins', sans-serif;
     margin: 0;
@@ -7,6 +8,7 @@ body {
     text-align: center;
 }
 
+/* Header */
 header {
     background: #ffd700;
     padding: 20px;
@@ -19,8 +21,16 @@ header {
     max-width: 150px;
 }
 
+/* Redes Sociales */
+.social-links {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin: 20px 0;
+}
+
 .social-links a {
-    margin: 0 10px;
     color: #ffd700;
     text-decoration: none;
     font-size: 18px;
@@ -32,6 +42,7 @@ header {
     color: #fff;
 }
 
+/* Episodios Destacados */
 .featured-episodes {
     margin: 40px auto;
     max-width: 900px;
@@ -41,7 +52,8 @@ header {
 }
 
 .episode {
-    margin: 20px 0;
+    margin: 20px auto;
+    max-width: 100%;
 }
 
 .episode iframe {
@@ -52,17 +64,19 @@ header {
     border: 3px solid #ffd700;
 }
 
+/* Suscripción */
 .subscribe {
     margin: 40px auto;
     padding: 20px;
     background: rgba(255, 215, 0, 0.1);
     border-radius: 10px;
+    max-width: 400px;
 }
 
 .subscribe input {
     padding: 10px;
-    width: 250px;
-    margin-right: 10px;
+    width: calc(100% - 120px);
+    margin-bottom: 10px;
     border-radius: 5px;
     border: none;
 }
@@ -74,12 +88,14 @@ header {
     border-radius: 5px;
     cursor: pointer;
     font-weight: bold;
+    width: 100%;
 }
 
 .subscribe button:hover {
     background: #c0a000;
 }
 
+/* Sección Sobre Nosotros */
 .about {
     margin: 40px auto;
     max-width: 800px;
@@ -88,10 +104,68 @@ header {
     border-radius: 10px;
 }
 
+/* Footer */
 footer {
     margin-top: 40px;
     padding: 20px;
     background: #ffd700;
     color: #1e1e1e;
     font-weight: bold;
+}
+
+/* --------- MEDIA QUERIES PARA RESPONSIVE DESIGN --------- */
+
+/* Móviles (pantallas pequeñas) */
+@media (max-width: 600px) {
+    .logo img {
+        max-width: 120px;
+    }
+    
+    header {
+        padding: 15px;
+    }
+
+    .social-links a {
+        font-size: 16px;
+    }
+
+    .featured-episodes {
+        padding: 15px;
+        max-width: 95%;
+    }
+
+    .episode iframe {
+        height: 250px;
+    }
+
+    .subscribe {
+        max-width: 90%;
+    }
+
+    .subscribe input {
+        width: 100%;
+    }
+}
+
+/* Tablets (pantallas medianas) */
+@media (max-width: 900px) {
+    .social-links {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .featured-episodes {
+        max-width: 95%;
+    }
+
+    .episode iframe {
+        height: 280px;
+    }
+}
+
+/* Pantallas grandes (ajustes mínimos) */
+@media (min-width: 1200px) {
+    .subscribe {
+        max-width: 350px;
+    }
 }
