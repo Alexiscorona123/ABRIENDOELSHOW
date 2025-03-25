@@ -1,15 +1,14 @@
 <!DOCTYPE html>
-<html lang="es,en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Abriendo el Show</title>
-    <link rel="icon" href="/icon.jpg" type="image">
+    <link rel="icon" href="/icon.jpg" type="image/jpeg">
     <link rel="stylesheet" href="/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7713874926812812"
-     crossorigin="anonymous"></script>
-     <meta name="google-adsense-account" content="ca-pub-7713874926812812">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7713874926812812" crossorigin="anonymous"></script>
+    <meta name="google-adsense-account" content="ca-pub-7713874926812812">
 </head>
 <body>
     <header>
@@ -19,68 +18,75 @@
         <h1>ABRIENDO EL SHOW</h1>
         <p>Bienvenido a <strong>Abriendo el Show</strong>, el podcast donde exploramos la música, la cultura y todo lo que nos apasiona. ¡Sintoniza y sé parte de la conversación!</p>
     </header>
-    
+
     <nav class="social-links">
         <p>Síguenos en nuestras redes:</p>
         <a href="https://www.instagram.com/abriendo_elshow/" target="_blank">Instagram</a>
         <a href="https://www.youtube.com/@abriendoelshow" target="_blank">YouTube</a>
         <a href="https://www.tiktok.com/@abriendoelshow" target="_blank">Tiktok</a>
     </nav>
-    
+
     <section class="featured-episodes">
         <h2>Episodios Destacados</h2>
-        <div id="video-container"></div>
+        <div id="video-container">
+            <p>Cargando episodios...</p>
+        </div>
     </section>
-    
-    <script>
-        fetch("https://script.google.com/macros/s/AKfycbxZcPSv0sTy6Jw26Mx1IKgHfb0JxoF7EXO1NPGFz60eYMJX6Cb4_RlDjzYXP91NANu5/exec")
-    .then(response => response.json())
-    .then(data => {
-        console.log("Datos recibidos:", data); // Verifica que los datos llegan bien
-        const container = document.getElementById('video-container');
-        container.innerHTML = '';
 
-        data.forEach(video => {
-            const videoElement = `
-                <div class="episode">
-                    <iframe width="560" height="315" src="${video.url}" 
-                        frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                        allowfullscreen>
-                    </iframe>
-                    <p>${video.titulo}</p>
-                </div>
-            `;
-            container.innerHTML += videoElement;
-        });
-    })
-    .catch(error => console.error('Error cargando los videos:', error));
-
-    </script>
-    
-    
     <section class="subscribe">
         <h2>Suscríbete</h2>
         <form onsubmit="redirectToYouTube(); return false;">
-            <input type="email" placeholder="elmeneoradioshow@gmail.com" required>
+            <input type="email" placeholder="Tu correo electrónico" required>
             <button type="submit">Suscribirse</button>
         </form>
     </section>
-    
-    <script>
-        function redirectToYouTube() {
-            // Reemplaza 'TU_CANAL_ID' con el ID de tu canal de YouTube
-            window.location.href = "https://www.youtube.com/channel/UCs94MtdjxBfHotYfVm7ZLxg";
-        }
-    </script>
-    
-    
+
     <section class="about">
         <h2>Sobre Nosotros</h2>
         <p>Conoce más sobre el equipo detrás de Abriendo el Show y nuestra misión.</p>
     </section>
-    
+
     <footer>
         <p>&copy; 2025 Abriendo el Show. Todos los derechos reservados.</p>
     </footer>
+
+    <script>
+        // Función para cargar episodios desde Google Apps Script
+        fetch("https://script.google.com/macros/s/AKfycbxZcPSv0sTy6Jw26Mx1IKgHfb0JxoF7EXO1NPGFz60eYMJX6Cb4_RlDjzYXP91NANu5/exec")
+        .then(response => response.json())
+        .then(data => {
+            console.log("Datos recibidos:", data);
+            const container = document.getElementById('video-container');
+            container.innerHTML = '';
+
+            data.forEach(video => {
+                const videoElement = `
+                    <div class="episode">
+                        <iframe width="560" height="315" src="${video.url}" 
+                            frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                        </iframe>
+                        <p>${video.titulo}</p>
+                    </div>
+                `;
+                container.innerHTML += videoElement;
+            });
+        })
+        .catch(error => {
+            console.error('Error cargando los videos:', error);
+            document.getElementById('video-container').innerHTML = '<p>Error al cargar los episodios. Inténtalo más tarde.</p>';
+        });
+
+        // Función para redirigir a la suscripción de YouTube
+        function redirectToYouTube() {
+            const emailInput = document.querySelector('.subscribe input[type="email"]');
+            if (emailInput.value.trim() === '') {
+                alert("Por favor, ingresa un correo válido.");
+                return;
+            }
+            window.location.href = "https://www.youtube.com/channel/UCs94MtdjxBfHotYfVm7ZLxg?sub_confirmation=1";
+        }
+    </script>
+
 </body>
 </html>
