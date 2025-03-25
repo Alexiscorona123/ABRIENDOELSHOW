@@ -60,11 +60,19 @@
     
     <section class="subscribe">
         <h2>Suscríbete</h2>
-        <form>
-            <input type="email" placeholder="elmeneoradioshow@gmail.com">
+        <form onsubmit="redirectToYouTube(); return false;">
+            <input type="email" placeholder="elmeneoradioshow@gmail.com" required>
             <button type="submit">Suscribirse</button>
         </form>
     </section>
+    
+    <script>
+        function redirectToYouTube() {
+            // Reemplaza 'TU_CANAL_ID' con el ID de tu canal de YouTube
+            window.location.href = "https://www.youtube.com/channel/UCs94MtdjxBfHotYfVm7ZLxg";
+        }
+    </script>
+    
     
     <section class="about">
         <h2>Sobre Nosotros</h2>
