@@ -29,15 +29,29 @@
     
     <section class="featured-episodes">
         <h2>Episodios Destacados</h2>
-        <div class="episode">
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/CZCE0cTdaZE?si=cmwsnZka0_MBLJjr" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-            <p>🔴 ¿Fin de una era? Sameji y G.U.G en su peor momento | Podcast 🎙🏀</p>
-        </div>
-        <div class="episode">
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/cNTtiel6FFw?si=TgGY4Bbvgd6SRDB2" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-            <p>💡 Comunismo vs. Capitalismo: ¿Qué Son y en Qué Se Diferencian? (pódcast)</p>
-        </div>
+        <div id="video-container"></div>
     </section>
+    
+    <script>
+        fetch("https://script.google.com/macros/s/AKfycbxZcPSv0sTy6Jw26Mx1IKgHfb0JxoF7EXO1NPGFz60eYMJX6Cb4_RlDjzYXP91NANu5/exec") // Pega aquí la URL de tu API
+            .then(response => response.json())
+            .then(data => {
+                const container = document.getElementById('video-container');
+                container.innerHTML = ''; // Limpia el contenido anterior
+                
+                data.forEach(video => {
+                    const videoElement = `
+                        <div class="episode">
+                            <iframe width="560" height="315" src="${video.url}" frameborder="0" allowfullscreen></iframe>
+                            <p>${video.titulo}</p>
+                        </div>
+                    `;
+                    container.innerHTML += videoElement;
+                });
+            })
+            .catch(error => console.error('Error cargando los videos:', error));
+    </script>
+    
     
     <section class="subscribe">
         <h2>Suscríbete</h2>
